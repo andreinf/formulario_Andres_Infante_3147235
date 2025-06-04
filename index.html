@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Mi Primer Formulario HTML</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(#ffffff, #141414);
+      }
+
+      .container {
+        background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20210827/pngtree-curve-color-block-watercolor-splash-beige-background-image_771090.jpg);
+        background-size: contain;
+        background-color: white;
+        padding: 30px;
+        border-radius: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #4caf50;
+        outline: none;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .resultado {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #e8f5e8;
+        border-radius: 4px;
+        border-left: 4px solid #4caf50;
+        display: none;
+      }
+
+      .resultado h3 {
+        margin-top: 0;
+        color: #2e7d32;
+      }
+
+      .dato {
+        margin-bottom: 10px;
+        padding: 8px;
+        background-color: white;
+        border-radius: 4px;
+      }
+
+      .etiqueta {
+        font-weight: bold;
+        color: #1976d2;
+      }
+
+      .opciones-check {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .opciones-check label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px;
+        background-color: #f0f8ff;
+        border: 2px solid #90caf9;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .opciones-check label:hover {
+        background-color: #e3f2fd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📝 Formulario de Registro</h1>
+
+      <!-- FORMULARIO HTML -->
+      <form id="miFormulario" novalidate>
+        <!-- Campo de texto simple -->
+        <div class="form-group">
+          <label for="nombre">Nombre completo:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+            placeholder="Escribe tu nombre completo"
+            autofocus
+            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{3,40}" />
+        </div>
+
+        <div class="form-group">
+          <label for="genero">Género:</label>
+          <select id="genero" name="genero" required>
+            <option value="">Seleccione...</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <!-- Campo de email -->
+        <div class="form-group">
+          <label for="email">Correo electrónico:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="ejemplo@correo.com"
+            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
+        </div>
+
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de nacimiento:</label>
+          <input
+            type="date"
+            id="fechaNacimiento"
+            name="fechaNacimiento"
+            required />
+        </div>
+
+        <!-- Campo de número de contacto -->
+        <div class="form-group">
+          <label for="telefono">Número de contacto:</label>
+          <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            required
+            placeholder="Ej: +57 300 1234567"
+            pattern="^\+?\d{7,15}$"
+            title="Ingresa un número válido con o sin prefijo internacional. Ej: +573001234567 o 3001234567" />
+        </div>
+
+        <!-- Campo de selección -->
+        <div class="form-group">
+          <label for="ciudad">Ciudad:</label>
+          <select
+            id="ciudad"
+            name="ciudad"
+            required>
+            <option value="">Selecciona tu ciudad</option>
+            <option value="bogota">Bogotá</option>
+            <option value="medellin">Medellín</option>
+            <option value="cali">Cali</option>
+            <option value="barranquilla">Barranquilla</option>
+            <option value="otra">Otra</option>
+          </select>
+        </div>
+
+        <!-- Campos de radio -->
+        <div class="form-group">
+          <label>Experiencia en programación:</label>
+          <input
+            type="radio"
+            id="principiante"
+            name="experiencia"
+            value="principiante"
+            required />
+          <label
+            for="principiante"
+            style="display: inline; margin-left: 5px"
+            >Principiante</label
+          ><br />
+
+          <input
+            type="radio"
+            id="intermedio"
+            name="experiencia"
+            value="intermedio" />
+          <label
+            for="intermedio"
+            style="display: inline; margin-left: 5px"
+            >Intermedio</label
+          ><br />
+
+          <input
+            type="radio"
+            id="avanzado"
+            name="experiencia"
+            value="avanzado" />
+          <label
+            for="avanzado"
+            style="display: inline; margin-left: 5px"
+            >Avanzado</label
+          >
+        </div>
+
+        <!-- Checkbox conocimientos -->
+        <div class="form-group">
+          <label>Conocimiento en diferentes lenguajes (elige al menos uno):</label>
+          <div class="opciones-check" id="lenguajes-group">
+            <label><input type="checkbox" name="lenguajes" value="HTML"> HTML</label>
+            <label><input type="checkbox" name="lenguajes" value="CSS"> CSS</label>
+            <label><input type="checkbox" name="lenguajes" value="JavaScript"> JavaScript</label>
+            <label><input type="checkbox" name="lenguajes" value="Python"> Python</label>
+            <label><input type="checkbox" name="lenguajes" value="SQL"> SQL</label>
+            <label><input type="checkbox" name="lenguajes" value="C#"> C#</label>
+            <label><input type="checkbox" name="lenguajes" value="Java"> Java</label>
+            <label><input type="checkbox" name="lenguajes" value="NoSQL"> NoSQL</label>
+            <label><input type="checkbox" name="lenguajes" value="Perl"> Perl</label>
+            <label><input type="checkbox" name="lenguajes" value="Swift"> Swift</label>
+          </div>
+        </div>
+
+        <!-- Checkbox preferencias -->
+        <div class="form-group">
+          <label>Preferencias de desarrollo (elige al menos una):</label>
+          <div class="opciones-check" id="preferencias-group">
+            <label><input type="checkbox" name="preferencias" value="web" /> Web</label>
+            <label><input type="checkbox" name="preferencias" value="movil" /> Móvil</label>
+            <label><input type="checkbox" name="preferencias" value="videojuegos" /> Videojuegos</label>
+            <label><input type="checkbox" name="preferencias" value="Big Data" /> Big Data</label>
+            <label><input type="checkbox" name="preferencias" value="Ciberseguridad" /> Ciber Seguridad</label>
+            <label><input type="checkbox" name="preferencias" value="Inteligencia Artificial" /> Inteligencia Artificial</label>
+            <label><input type="checkbox" name="preferencias" value="Realidad Virtual" /> Realidad Virtual</label>
+          </div>
+        </div>
+
+        <!-- Campo archivo -->
+        <div class="form-group">
+          <label for="myfile">Sube tu hoja de vida:</label>
+          <input type="file" id="myfile" name="myfile" required />
+        </div>
+
+           <div class="form-group">
+          <input
+            type="image"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png"
+            alt="Enviar"
+            width="48"
+            height="150"
+          />
+        </div>
+
+        <!-- Checkbox términos -->
+        <div class="form-group">
+          <input
+            type="checkbox"
+            id="acepto"
+            name="acepto"
+            required />
+          <label
+            for="acepto"
+            style="display: inline; margin-left: 5px">
+            Acepto los términos y condiciones
+          </label>
+        </div>
+
+        <!-- Área de texto -->
+        <div class="form-group">
+          <label for="comentarios">Comentarios adicionales:</label>
+          <textarea
+            id="comentarios"
+            name="comentarios"
+            rows="4"
+            placeholder="Cuéntanos algo más sobre ti (opcional)"></textarea>
+        </div>
+
+        <!-- Botón enviar -->
+        <button type="submit" title="Enviar formulario">🚀 Enviar Formulario</button>
+      </form>
+
+      <!-- DIV para mostrar datos luego de enviar -->
+      <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+      const formulario = document.getElementById("miFormulario");
+      const resultado = document.getElementById("resultado");
+
+      formulario.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Validar checkboxes lenguajes
+        const lenguajes = document.querySelectorAll(
+          'input[name="lenguajes"]:checked'
+        );
+        if (lenguajes.length === 0) {
+          alert("Por favor selecciona al menos un lenguaje de programación.");
+          return;
+        }
+
+        // Validar checkboxes preferencias
+        const preferencias = document.querySelectorAll(
+          'input[name="preferencias"]:checked'
+        );
+        if (preferencias.length === 0) {
+          alert("Por favor selecciona al menos una preferencia de desarrollo.");
+          return;
+        }
+
+
+        if (!formulario.checkValidity()) {
+          formulario.reportValidity();
+          return;
+        }
+
+        // Si pasa validación, mostrar datos recogidos
+        const datos = new FormData(formulario);
+
+        let htmlDatos = `
+          <h3>Datos enviados:</h3>
+          <div class="dato"><span class="etiqueta">Nombre:</span> ${datos.get(
+            "nombre"
+          )}</div>
+          <div class="dato"><span class="etiqueta">Género:</span> ${datos.get(
+            "genero"
+          )}</div>
+          <div class="dato"><span class="etiqueta">Correo electrónico:</span> ${datos.get(
+            "email"
+          )}</div>
+          <div class="dato"><span class="etiqueta">Fecha de nacimiento:</span> ${datos.get(
+            "fechaNacimiento"
+          )}</div>
+          <div class="dato"><span class="etiqueta">Teléfono:</span> ${datos.get(
+            "telefono"
+          )}</div>
+          <div class="dato"><span class="etiqueta">Ciudad:</span> ${datos.get(
+            "ciudad"
+          )}</div>
+          <div class="dato"><span class="etiqueta">Experiencia:</span> ${datos.get(
+            "experiencia"
+          )}</div>
+          <div class="dato"><span class="etiqueta">Lenguajes:</span> ${Array.from(
+            lenguajes
+          )
+            .map((el) => el.value)
+            .join(", ")}</div>
+          <div class="dato"><span class="etiqueta">Preferencias:</span> ${Array.from(
+            preferencias
+          )
+            .map((el) => el.value)
+            .join(", ")}</div>
+          <div class="dato"><span class="etiqueta">Archivo:</span> ${datos.get(
+            "myfile"
+          ).name}</div>
+          <div class="dato"><span class="etiqueta">Aceptó términos:</span> Sí</div>
+          <div class="dato"><span class="etiqueta">Comentarios:</span> ${
+            datos.get("comentarios") || "Ninguno"
+          }</div>
+        `;
+
+        resultado.innerHTML = htmlDatos;
+        resultado.style.display = "block";
+      });
+
+            // 🎯 FUNCIONALIDAD EXTRA: Limpiar formulario
+      function limpiarFormulario() {
+        document.getElementById('miFormulario').reset();
+        document.getElementById('resultado').style.display = 'none';
+      }
+
+      // Agregar botón de limpiar después del envío
+      document.addEventListener('DOMContentLoaded', function () {
+        const contenedor = document.querySelector('.container');
+        const botonLimpiar = document.createElement('button');
+        botonLimpiar.innerHTML = '🗑️ Limpiar Formulario';
+        botonLimpiar.style.backgroundColor = '#ff9800';
+        botonLimpiar.style.marginTop = '10px';
+        botonLimpiar.onclick = limpiarFormulario;
+        contenedor.appendChild(botonLimpiar);
+      });
+    </script>
+  </body>
+</html>
